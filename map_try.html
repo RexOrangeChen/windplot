@@ -7,7 +7,7 @@
             margin: 0;
         }
         #main {
-            height: 80%;
+            height: 100%;
         }
     </style>
 </head>
@@ -17,7 +17,6 @@
 <script src="bmap.min.js"></script>
 <script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
 <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=MxIznpU3aIfFpD6hQHqUcr21DFGOaaCo"></script>
-<p id="demo">My First Paragraph</p>
 <script type="text/javascript">
 var myChart = echarts.init(document.getElementById('main'));
 var uploadedDataURL = "hello.json";
@@ -54,7 +53,6 @@ $.getJSON(uploadedDataURL, function(data) {
         };
 		
     }));
-	document.getElementById("demo").innerHTML=nam[1];
     myChart.setOption(option = {
 		title : {
         text: '台风数据可视化--1949',
