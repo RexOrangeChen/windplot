@@ -33,6 +33,7 @@ $.getJSON(uploadedDataURL, function(data) {
         };
 		
     }));
+	document.getElementById("demo").innerHTML=nam[1];
     myChart.setOption(option = {
 		title : {
         text: '台风数据可视化--1949',
