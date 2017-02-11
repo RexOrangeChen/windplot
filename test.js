@@ -35,6 +35,13 @@ $.getJSON(uploadedDataURL, function(data) {
     }));
 
     myChart.setOption(option = {
+		backgroundColor: new echarts.graphic.RadialGradient(0.5, 0.5, 0.4, [{
+        offset: 0,
+        color: '#4b5769'
+    }, {
+        offset: 1,
+        color: '#404a59'
+    }]),
 		title : {
         text: '台风数据可视化1949',
         left: 'center',
@@ -53,137 +60,24 @@ $.getJSON(uploadedDataURL, function(data) {
         },
         selectedMode: 'multiple'
     },
-        bmap: {
-            center: [116.40, 40.04],
-            zoom: 1,
+        geo: {
+            map: 'world',
+			center: [126.40, 20.04],
+            zoom: 5,
             roam: true,
-            mapStyle: {
-              'styleJson': [
-                {
-                  'featureType': 'water',
-                  'elementType': 'all',
-                  'stylers': {
-                    'color': '#031628'
-                  }
-                },
-                {
-                  'featureType': 'land',
-                  'elementType': 'geometry',
-                  'stylers': {
-                    'color': '#000102'
-                  }
-                },
-                {
-                  'featureType': 'highway',
-                  'elementType': 'all',
-                  'stylers': {
-                    'visibility': 'off'
-                  }
-                },
-                {
-                  'featureType': 'arterial',
-                  'elementType': 'geometry.fill',
-                  'stylers': {
-                    'color': '#000000'
-                  }
-                },
-                {
-                  'featureType': 'arterial',
-                  'elementType': 'geometry.stroke',
-                  'stylers': {
-                    'color': '#0b3d51'
-                  }
-                },
-                {
-                  'featureType': 'local',
-                  'elementType': 'geometry',
-                  'stylers': {
-                    'color': '#000000'
-                  }
-                },
-                {
-                  'featureType': 'railway',
-                  'elementType': 'geometry.fill',
-                  'stylers': {
-                    'color': '#000000'
-                  }
-                },
-                {
-                  'featureType': 'railway',
-                  'elementType': 'geometry.stroke',
-                  'stylers': {
-                    'color': '#08304b'
-                  }
-                },
-                {
-                  'featureType': 'subway',
-                  'elementType': 'geometry',
-                  'stylers': {
-                    'lightness': -70
-                  }
-                },
-                {
-                  'featureType': 'building',
-                  'elementType': 'geometry.fill',
-                  'stylers': {
-                    'color': '#000000'
-                  }
-                },
-                {
-                  'featureType': 'all',
-                  'elementType': 'labels.text.fill',
-                  'stylers': {
-                    'color': '#857f7f'
-                  }
-                },
-                {
-                  'featureType': 'all',
-                  'elementType': 'labels.text.stroke',
-                  'stylers': {
-                    'color': '#000000'
-                  }
-                },
-                {
-                  'featureType': 'building',
-                  'elementType': 'geometry',
-                  'stylers': {
-                    'color': '#022338'
-                  }
-                },
-                {
-                  'featureType': 'green',
-                  'elementType': 'geometry',
-                  'stylers': {
-                    'color': '#062032'
-                  }
-                },
-                {
-                  'featureType': 'boundary',
-                  'elementType': 'all',
-                  'stylers': {
-                    'color': '#465b6c'
-                  }
-                },
-                {
-                  'featureType': 'manmade',
-                  'elementType': 'all',
-                  'stylers': {
-                    'color': '#022338'
-                  }
-                },
-                {
-                  'featureType': 'label',
-                  'elementType': 'all',
-                  'stylers': {
-                    'visibility': 'off'
-                  }
-                }
-              ]
+            itemStyle: {
+            normal: {
+                areaColor: '#323c48',
+                borderColor: '#404a59'
+            },
+            emphasis: {
+                areaColor: '#2a333d'
             }
+        }
         },
         series: [{
             type: 'lines',
-            coordinateSystem: 'bmap',
+            coordinateSystem: 'geo',
             polyline: true,
             data: windLines,
             silent: true,
@@ -192,14 +86,14 @@ $.getJSON(uploadedDataURL, function(data) {
                     // color: '#c23531',
                     // color: 'rgb(200, 35, 45)',
                     opacity: 0.2,
-                    width: 3
+                    width: 5
                 }
             },
             progressiveThreshold: 500,
             progressive: 200
         }, {
             type: 'lines',
-            coordinateSystem: 'bmap',
+            coordinateSystem: 'geo',
             polyline: true,
             data: windLines,
             lineStyle: {
@@ -208,7 +102,7 @@ $.getJSON(uploadedDataURL, function(data) {
                 }
             },
             effect: {
-                constantSpeed: 20,
+                constantSpeed: 50,
                 show: true,
                 trailLength: 0.2,
                 symbolSize: 4
