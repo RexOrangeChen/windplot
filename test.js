@@ -5,12 +5,12 @@ var uploadedDataURL = "hello.json";
 $.getJSON(uploadedDataURL, function(data) {
     var nam = []
 	var hStep = 300 / (data.length - 1);
-    var busLines = [].concat.apply([], data.map(function (busLine, idx) {
+    var windLines = [].concat.apply([], data.map(function (windLine, idx) {
         var prevPt;
         var points = [];
-		var names = busLine[0];
-        for (var i = 1; i < busLine.length; i += 2) {
-            var pt = [parseFloat(busLine[i]), parseFloat(busLine[i + 1])];
+		var names = windLine[0];
+        for (var i = 1; i < windLine.length; i += 2) {
+            var pt = [parseFloat(windLine[i]), parseFloat(windLine[i + 1])];
             if (i > 1) {
                 pt = [
                     prevPt[0] + pt[0],
@@ -21,7 +21,7 @@ $.getJSON(uploadedDataURL, function(data) {
             points.push([pt[0]  , pt[1] ]);
 			
 		}
-		nam.push(busLine[0])
+		nam.push(windLine[0])
         return {
 			name: names,
             coords: points,
@@ -33,10 +33,10 @@ $.getJSON(uploadedDataURL, function(data) {
         };
 		
     }));
-	document.getElementById("demo").innerHTML=nam[1];
+
     myChart.setOption(option = {
 		title : {
-        text: '台风数据可视化--1949',
+        text: '台风数据可视化1949',
         left: 'center',
         textStyle : {
             color: '#fff'
@@ -185,7 +185,7 @@ $.getJSON(uploadedDataURL, function(data) {
             type: 'lines',
             coordinateSystem: 'bmap',
             polyline: true,
-            data: busLines,
+            data: windLines,
             silent: true,
             lineStyle: {
                 normal: {
@@ -201,7 +201,7 @@ $.getJSON(uploadedDataURL, function(data) {
             type: 'lines',
             coordinateSystem: 'bmap',
             polyline: true,
-            data: busLines,
+            data: windLines,
             lineStyle: {
                 normal: {
                     width: 0
